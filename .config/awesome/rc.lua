@@ -197,6 +197,7 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "XF86AudioLowerVolume",  APW.Down),
 	awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
 	awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("chromium-browser") end),
+	awful.key({ modkey, "Shift" }, "f", function () awful.util.spawn("nautilus --no-desktop") end),	
 	awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("sublime") end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
