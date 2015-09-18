@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/svcj/build/NB/LFP_Master/PRODUCTS/DB_A1001_BT/configure-files/lfp'
+let g:netrw_dirhist_2='/home/svcj/build/NB/LFP_Master/PRODUCTS/DB_A1001_BT/packages/language/common/.git/hooks'
+let g:netrw_dirhist_3='/home/ocalinde/tmp'
+let g:netrw_dirhist_4='/home/svcj/build/NB/LFP_Master/PRODUCTS/DB_A1001_BT/packages/web/emb2010/incl/events/.git/hooks'
