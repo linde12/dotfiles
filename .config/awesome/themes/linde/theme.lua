@@ -24,7 +24,7 @@ wallpaper1    = themedir .. "/wall.png"
 wpscript      = home .. "/.wallpaper"
 
 if awful.util.file_readable(wallpaper1) then
-	theme.wallpaper_cmd = { "awsetbg " .. wallpaper1 }
+	theme.wallpaper_cmd = { "feh --bg-scale " .. wallpaper1 }
 elseif awful.util.file_readable(wpscript) then
 	theme.wallpaper_cmd = { "sh " .. wpscript }
 end
