@@ -9,9 +9,19 @@ require("naughty")
 
 -- Load Debian menu entries
 require("debian.menu")
+lain = require("lain")
+lain.widgets = require("lain.widgets")
 
+utils = {}
+utils.client = require("utils.client")
+utils.rc = require("utils.rc")
+
+utils.client.unfocus_opacity_incr = 0.3
+utils.rc.loadrc('signal')
 -- Volume control
 local APW = require("apw/widget")
+
+-- Load compton
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -55,13 +65,14 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod1"
 
+beautiful.useless_gap_width = 10
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.max
+    lain.layout.uselesstile.right,
+    lain.layout.uselesstile.left,
+    lain.layout.centerwork,
+    awful.layout.suit.floating
 }
 -- }}}
 
@@ -98,6 +109,8 @@ mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
+
+-- Volume widget
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -196,8 +209,8 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "XF86AudioRaiseVolume",  APW.Up),
 	awful.key({ }, "XF86AudioLowerVolume",  APW.Down),
 	awful.key({ }, "XF86AudioMute",         APW.ToggleMute),
-	awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("chromium-browser") end),
-	awful.key({ modkey, "Shift" }, "f", function () awful.util.spawn("nautilus --no-desktop") end),	
+	awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("google-chrome") end),
+	awful.key({ modkey, "Shift" }, "f", function () awful.util.spawn("nautilus --no-desktop") end),
 	awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("atom") end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -331,8 +344,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
+      properties = { border_width = 0,
+                     border_focus = 0,
                      focus = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
@@ -342,6 +355,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "pavucontrol" },
+      properties = { floating = true } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -374,7 +389,4 @@ client.add_signal("manage", function (c, startup)
         end
     end
 end)
-
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

@@ -1,25 +1,25 @@
 -- Copyright 2013 mokasin
 -- This file is part of the Awesome Pulseaudio Widget (APW).
--- 
+--
 -- APW is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, or
 -- (at your option) any later version.
--- 
+--
 -- APW is distributed in the hope that it will be useful,
 -- but WITHOUT ANY WARRANTY; without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 -- GNU General Public License for more details.
--- 
+--
 -- You should have received a copy of the GNU General Public License
 -- along with APW. If not, see <http://www.gnu.org/licenses/>.
 
 -- Configuration variables
 local width         = 40        -- width in pixels of progressbar
-local margin_right  = 0         -- right margin in pixels of progressbar 
-local margin_left   = 0         -- left margin in pixels of progressbar 
-local margin_top    = 2         -- top margin in pixels of progressbar 
-local margin_bottom = 0         -- bottom margin in pixels of progressbar  
+local margin_right  = 0         -- right margin in pixels of progressbar
+local margin_left   = 0         -- left margin in pixels of progressbar
+local margin_top    = 2         -- top margin in pixels of progressbar
+local margin_bottom = 0         -- bottom margin in pixels of progressbar
 local step          = 0.05      -- stepsize for volume change (ranges from 0 to 1)
 local color         = '#698f1e' -- foreground color of progessbar
 local color_bg      = '#33450f' -- background color
@@ -70,12 +70,12 @@ end
 function pulseWidget.Up()
 	p:SetVolume(p.Volume + pulseBar.step)
 	_update()
-end	
+end
 
 function pulseWidget.Down()
 	p:SetVolume(p.Volume - pulseBar.step)
 	_update()
-end	
+end
 
 
 function pulseWidget.ToggleMute()
