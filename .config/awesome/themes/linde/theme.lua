@@ -14,6 +14,7 @@ sharedicons   = shared .. "/icons"
 sharedthemes  = shared .. "/themes"
 themes        = config .. "/themes"
 themename     = "/linde"
+
 if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
        themes = sharedthemes
 end
@@ -23,15 +24,10 @@ wallpaper1    = themedir .. "/wall.png"
 wpscript      = home .. "/.wallpaper"
 
 if awful.util.file_readable(wallpaper1) then
-	theme.wallpaper_cmd = { "awsetbg " .. wallpaper1 }
+	theme.wallpaper_cmd = { "feh --bg-scale " .. wallpaper1 }
 elseif awful.util.file_readable(wpscript) then
 	theme.wallpaper_cmd = { "sh " .. wpscript }
 end
-
-if awful.util.file_readable(config .. "/vain/init.lua") then
-    theme.useless_gap_width  = "3"
-end
---}}}
 
 theme.font                          = "Tamsyn 10.5"
 theme.taglist_font                  = "Icons 10"
@@ -57,6 +53,9 @@ theme.taglist_squares_unsel         = themedir .. "/icons/square_unsel.png"
 theme.arrl_lr_pre                   = themedir .. "/icons/arrl_lr_pre.png"
 theme.arrl_lr_post                  = themedir .. "/icons/arrl_lr_post.png"
 
+theme.layout_centerwork             = themedir .. "/icons/uselesstiletop.png"
+theme.layout_uselesstile            = themedir .. "/icons/uselesstile.png"
+theme.layout_uselesstileleft        = themedir .. "/icons/uselesstileleft.png"
 theme.layout_tile                   = themedir .. "/icons/tile.png"
 theme.layout_tilegaps               = themedir .. "/icons/tilegaps.png"
 theme.layout_tileleft               = themedir .. "/icons/tileleft.png"
@@ -78,9 +77,9 @@ theme.tasklist_maximized_vertical   = ""
 
 -- lain related
 theme.useless_gap_width             = 10
-theme.layout_uselesstile            = themedir .. "/icons/uselesstile.png"
-theme.layout_uselesstileleft        = themedir .. "/icons/uselesstileleft.png"
-theme.layout_uselesstiletop         = themedir .. "/icons/uselesstiletop.png"
+--theme.layout_uselesstile            = themedir .. "/icons/uselesstile.png"
+--theme.layout_uselesstileleft        = themedir .. "/icons/uselesstileleft.png"
+--theme.layout_uselesstiletop         = themedir .. "/icons/uselesstiletop.png"
 theme.awesome_icon = sharedicons .. "/awesome16.png"
 
 return theme
