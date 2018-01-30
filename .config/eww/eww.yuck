@@ -1,0 +1,67 @@
+;; Weather vars
+(defpoll ICON :interval "15m" `scripts/weather_info --icon`)
+(defpoll STAT :interval "15m" `scripts/weather_info --stat`)
+(defpoll TEMP :interval "15m" `scripts/weather_info --temp`)
+(defpoll HEX :interval "15m" `scripts/weather_info --hex`)
+(defpoll QUOTE :interval "15m" `scripts/weather_info --quote`)
+(defpoll QUOTE2 :interval "15m" `scripts/weather_info --quote2`)
+
+;; Electricity vars
+(defpoll ELECTRICITY_TODAY :interval "30m" `scripts/electricity_info --today`)
+(defpoll ELECTRICITY_TOMORROW :interval "30m" `scripts/electricity_info --tomorrow`)
+
+;; Time vars
+(defpoll HOUR :interval "5s" `date +\"%I\"`)
+(defpoll MIN :interval "5s" `date +\"%M\"`)
+(defpoll MER :interval "5s" `date +\"%p\"`)
+(defpoll DAY :interval "5s" `date +\"%A\"`)
+
+;; weather
+(defwidget weather [] 
+	(box :class "weather genwin" 
+		(box :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false" 
+			(box :orientation "h" :vexpand "false" :hexpand "false" 
+				(label :class "iconweather" :halign "start" :style "color: ${HEX};" :text ICON)
+				(label :class "label_temp" :halign "end" :text TEMP))
+			(box :orientation "v" :spacing 10 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "label_stat" :text STAT)
+				(label :class "label_quote" :text QUOTE)
+				(label :class "label_quote" :text QUOTE2)))))
+
+;; clock
+(defwidget clock [] 
+	(box :class "genwin" :orientation "h" :spacing 50 :space-evenly false :vexpand "false" :hexpand "false" 
+		(box :orientation "h" :spacing 0
+			(label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR)
+			(label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN))
+		(box :orientation "v" :spacing 0 
+			(label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text MER)
+			(label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DAY))))
+
+;; electricity
+(defwidget electricity [] 
+	(box :class "elec genwin" :orientation "h"
+		(box :class "elec-day" :orientation "v" :valign "center"
+			(label :halign "start" :text "Today")
+			(label :halign "start" :text "Tomorrow"))
+		(box :class "elec-price" :orientation "v" :valign "center"
+			(label :halign "start" :text ELECTRICITY_TODAY)
+			(label :halign "start" :text ELECTRICITY_TOMORROW))))
+
+(defwidget main []
+	(box :orientation "h" :spacing 20 :space-evenly false :vexpand "true" :hexpand "true"
+    (box :orientation "v" :spacing 20 :space-evenly true
+      (box (electricity))
+      (box (clock)))
+    (box :orientation "h" :hexpand true
+      (box (weather)))))
+
+
+
+
+
+;; WINDOWS
+
+(defwindow main :stacking "bg" :focusable "false" :monitor 0
+	    :geometry (geometry :anchor "center")
+					(main))

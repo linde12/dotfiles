@@ -1,0 +1,12 @@
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+font:
+  size: 14
+  normal:
+    # family: Roboto
+    # style: Thin
+    family: Hack
+    style: Regular
+
+key_bindings:
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }

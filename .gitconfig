@@ -1,0 +1,22 @@
+[user]
+	email = lindeoscar@gmail.com
+	name = linde12
+
+[alias]
+    ch = checkout
+    s = status
+    b = branch
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[core]
+    editor = vim
+
+[push]
+    default = matching
+
+[pull]
+    ff = only
+
+[init]
+	defaultBranch = master
+

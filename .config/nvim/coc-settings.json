@@ -1,0 +1,11 @@
+{
+  "coc.preferences.formatOnSave": true,
+  "suggest.virtualText": true,
+  "diagnostic.virtualText": true,
+  "codeLens.enable": true,
+  "typescript.referencesCodeLens.enabled": false,
+  "diagnostic.hintSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": ""
+}

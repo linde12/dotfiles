@@ -1,0 +1,91 @@
+-- require("mason").setup()
+-- require("mason-lspconfig").setup()
+--
+-- local quickfix = function()
+--   local line = vim.fn.line('.')
+--   -- local pos = vim.fn.getpos('.')
+--   -- local bufnr = vim.api.nvim_get_current_buf()
+--   -- local diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr)
+--   local context = { only = {"quickfix"} }
+--   print(vim.inspect(context))
+--   vim.lsp.buf.code_action({
+--     range = {start = {line, 0}, ['end'] = {line+1,0}},
+--     context = context,
+--   })
+--   print(vim.inspect(pos))
+-- end
+--
+-- -- Mappings.
+-- -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- local opts = { noremap=true, silent=true }
+-- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+--
+-- -- Use an on_attach function to only map the following keys
+-- -- after the language server attaches to the current buffer
+-- local on_attach = function(client, bufnr)
+--   -- Enable completion triggered by <c-x><c-o>
+--   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+--
+--   -- Mappings.
+--   -- See `:help vim.lsp.*` for documentation on any of the below functions
+--   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+--   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+--   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+--   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+--   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+--   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+--   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+--   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+--   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+--   vim.keymap.set('n', '<space>wl', function()
+--     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--   end, bufopts)
+--   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+--   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+--   vim.keymap.set('n', '<leader>af', quickfix, bufopts)
+--   vim.keymap.set('n', '<leader>ac', vim.lsp.buf.code_action, bufopts)
+--   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+--   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+-- end
+--
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--
+-- require("mason-lspconfig").setup_handlers({
+--   -- The first entry (without a key) will be the default handler
+--   -- and will be called for each installed server that doesn't have
+--   -- a dedicated handler.
+--   function (server_name) -- default handler (optional)
+--     require("lspconfig")[server_name].setup({
+--       on_attach = on_attach,
+--       capabilities = capabilities
+--     })
+--   end,
+--   -- Next, you can provide a dedicated handler for specific servers.
+--   -- For example, a handler override for the `rust_analyzer`:
+--   ["sumneko_lua"] = function ()
+--     require("lspconfig").sumneko_lua.setup({
+--       settings = {
+--         Lua = {
+--           diagnostics = {
+--             globals = {'vim'}
+--           },
+--           runtime = {
+--             version = "LuaJIT",
+--             path = vim.split(package.path, ";")
+--           },
+--           workspace = {
+--             library = {
+--               [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+--               [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+--             }
+--           }
+--         }
+--       },
+--       on_attach = on_attach,
+--       capabilities = capabilities
+--     })
+--   end
+-- })

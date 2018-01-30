@@ -1,0 +1,7 @@
+#!/bin/bash
+scripts="$HOME/.config/eww/scripts"
+$scripts/electricity_info --getdata
+$scripts/weather_info --getdata
+
+exec eww daemon --no-daemonize
+# eww open main

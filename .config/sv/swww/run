@@ -1,0 +1,2 @@
+#!/bin/bash
+exec swww init --no-daemon

@@ -1,0 +1,48 @@
+#!/bin/bash
+cache_dir="$HOME/.cache/eww/electricity"
+cache_avg_price_today=${cache_dir}/avg_price_today
+cache_avg_price_tomorrow=${cache_dir}/avg_price_tomorrow
+
+## Make cache dir
+if [[ ! -d "$cache_dir" ]]; then
+	mkdir -p ${cache_dir}
+fi
+
+getdata() {
+  datepath=""
+  if [[ "$1" == "today" ]]; then
+    datepath=$(date +%Y/%m-%d)
+  elif [[ "$1" == "tomorrow" ]]; then
+    datepath=$(date --date="tomorrow" +%Y/%m-%d)
+  else
+    exit 1
+  fi
+
+  ## Fetch price and calculate avg
+  price=$(curl -sf https://www.elprisetjustnu.se/api/v1/prices/${datepath}_SE4.json)
+  if [[ "$?" != "0" ]]; then
+		if [[ "$1" == "today" ]]; then
+			echo "-" > $cache_avg_price_today
+		elif [[ "$1" == "tomorrow" ]]; then
+			echo "-" > $cache_avg_price_tomorrow
+		fi
+    exit 0
+  fi
+
+  avg=$(echo "$price" | jq ".[].SEK_per_kWh" | awk '{ total += $1; count++ } END { print total/count }')
+  if [[ "$1" == "today" ]]; then
+    printf "%.2fkr/kWh" $avg > $cache_avg_price_today
+  elif [[ "$1" == "tomorrow" ]]; then
+    printf "%.2fkr/kWh" $avg > $cache_avg_price_tomorrow
+  fi
+}
+
+
+if [[ "$1" == "--getdata" ]]; then
+  getdata today
+  getdata tomorrow
+elif [[ "$1" == "--today" ]]; then
+  cat $cache_avg_price_today
+elif [[ "$1" == "--tomorrow" ]]; then
+  cat $cache_avg_price_tomorrow
+fi

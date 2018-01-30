@@ -1,0 +1,102 @@
+{
+  "layer": "bottom",
+  "height": 50,
+  "modules-left": [
+    "river/tags",
+    //"memory"
+    "cpu",
+    "tray",
+  ],
+  "modules-center": ["custom/media"],
+  "modules-right": [
+    "custom/ss",
+    "network",
+    "battery",
+    // "backlight",
+    "pulseaudio",
+    "custom/cycle_wall",
+    "clock",
+  ],
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-bluetooth-muted": "{icon} {volume}%",
+    "format-muted": "{icon} {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "default": ["", "", ""]
+    },
+  },
+  "river/tags": {
+    "num-tags": 6
+  },
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "format-ethernet": ""
+  },
+  "backlight": {
+    "format": " {icon} ",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "interval":1,
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5"
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon}",
+    "format-charging": "",
+    "format-plugged": "",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "tray":{
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{: %I:%M %p   %Y-%m-%d}"
+  },
+  "cpu": {
+    "interval":5,
+    "format": "{icon0} {icon1} {icon2} {icon3}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "custom/media": {
+    "format": "{icon}{}",
+    "return-type": "json",
+    "format-icons": {
+      "Paused": " ",
+      "Playing": " ",
+    },
+    "max-length":70,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+  },
+  "custom/ss":{
+    "format":"",
+    "on-click": "~/.config/waybar/scripts/screenshot"
+  },
+  "custom/cycle_wall":{
+    "tooltip": false,
+    "format":" ",
+    "on-click": "~/.config/waybar/scripts/cycle-wallpaper"
+  }
+}

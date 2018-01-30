@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+TEMP=/tmp/current_wall
+scripts=$HOME/.config/waybar/scripts
+files=(~/.config/river/wallpapers/*)
+
+index=$(cat $TEMP)
+index=$((index+1))
+if [ $index -ge ${#files[@]} ]; then
+    index=0
+fi
+echo $index > $TEMP
+echo "${files[$index]}"
+$scripts/wall "${files[$index]}"
