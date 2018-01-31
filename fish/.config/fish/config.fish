@@ -77,8 +77,9 @@ set -x ANDROID_HOME ~/Android/Sdk
 set -x http_proxy http://wwwproxy.se.axis.com:3128
 set -x https_proxy http://wwwproxy.se.axis.com:3128
 
-# Cargo
+# Rust
 set -x PATH $PATH $HOME/.cargo/bin
+set -x RUST_SRC_PATH="(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # $HOME/.local/bin
 set -x PATH $PATH $HOME/.local/bin
