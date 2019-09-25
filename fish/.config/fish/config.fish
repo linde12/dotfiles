@@ -42,7 +42,7 @@ set -x LS_COLORS "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 # Greeting
 function fish_greeting
   #echo "$ce$USER$c2@$c4"(uname -n)$c2" - $c0"(uptime)" $c3~~~ ><(((º>"
-  calendar | grep (date "+%b %d")
+  #calendar | grep (date "+%b %d")
 end
 function fish_title
   echo "fish @ "(pwd)
@@ -53,33 +53,13 @@ end
 set -x LANG en_US.UTF-8
 
 # Editor config
-#set -U EDITOR vim
-set -x ATOM_NODE_URL http://gh-contractor-zcbenz.s3.amazonaws.com/atom-shell/dist
+set -U EDITOR vim
 
 # Terminal config
 #set -x TERM xterm-256color
 
-# Path
-set -x PATH $PATH /sbin
-set -x PATH $PATH /home/ocalinde/work/git/newbiz
-set -x PATH $PATH /usr/sbin
-set -x PATH $PATH /home/ocalinde/.npm-packages/bin
-
-# Go
-set -x PATH $PATH /usr/local/go/bin
-set -x PATH $PATH /home/ocalinde/go/bin
-set -x GOPATH /home/ocalinde/go
-
-# Android
-set -x ANDROID_HOME ~/Android/Sdk
-
-# Proxy
-set -x http_proxy http://wwwproxy.se.axis.com:3128
-set -x https_proxy http://wwwproxy.se.axis.com:3128
-
 # Rust
 set -x PATH $PATH $HOME/.cargo/bin
-set -x RUST_SRC_PATH="(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # $HOME/.local/bin
 set -x PATH $PATH $HOME/.local/bin
