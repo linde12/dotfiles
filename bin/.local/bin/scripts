@@ -1,0 +1,28 @@
+#!/bin/bash
+
+usage() {
+  echo "Usage: $(basename $0) [section]"
+  echo ""
+  echo "Print sections of package.json, defaults to 'scripts'"
+  exit 1
+}
+
+upsearch() {
+  dir=$PWD
+  slashes=${PWD//[^\/]/} # strip everything but slashes
+  for ((i=${#slashes}; i>0; --i )); do
+    [ -e "$dir/package.json" ] && echo "$dir/package.json"
+    dir="$dir/.."
+  done
+}
+
+while getopts ":" opt; do
+  case "$opt" in
+    *) usage;;
+  esac
+done
+shift $((OPTIND-1))
+
+section=${1:-scripts}
+pkg_path=$(upsearch)
+[ -n pkg_path ] && jq .$section $pkg_path
