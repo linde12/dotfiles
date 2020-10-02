@@ -1,8 +1,10 @@
 # Set the greeting
 # Command line utility aliases
 alias t  "tree --dirsfirst"
-alias ll "ls -alGh"
-alias l "ls"
+alias ll "exa -lah"
+alias l "exa"
+alias ls "exa"
+alias cat "bat"
 alias wtc 'curl -Ss http://whatthecommit.com/index.txt'
 
 # Link binaries w/ stow to ~/.local/bin
@@ -58,8 +60,16 @@ set -U EDITOR vim
 # Terminal config
 #set -x TERM xterm-256color
 
-# Rust
+# Rust bin
 set -x PATH $PATH $HOME/.cargo/bin
 
+# Node bin
+set -x PATH $PATH /home/linde/.local/share/node-v12.18.2-linux-x64/bin
 # $HOME/.local/bin
 set -x PATH $PATH $HOME/.local/bin
+set -x wslpath /mnt/c/WINDOWS/system32/wsl.exe
+
+source $HOME/.cargo/env
+alias vim nvim
+
+starship init fish | source
