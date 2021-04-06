@@ -15,10 +15,10 @@ Plug 'AndrewRadev/tagalong.vim' " cw in html tags
 Plug 'alvan/vim-closetag' " automatically close html tags
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder bin
 Plug 'junegunn/fzf.vim' " fuzzy finder vim plugin
-Plug 'szorfein/fromthehell.vim' " colorscheme
 Plug 'tpope/vim-sensible' " sensible defaults
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim' " colorscheme
 call plug#end()
 
 "" sane defaults
@@ -54,7 +54,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " colorscheme
 set background=dark
-colorscheme fromthehell
+colorscheme onedark
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
