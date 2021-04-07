@@ -6,7 +6,6 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine' " display indentation lines
-Plug 'sheerun/vim-polyglot' " syntax highlighting & indentation
 Plug 'ervandew/supertab' " tab instead of C-n etc.
 Plug 'ap/vim-buftabline'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -19,6 +18,7 @@ Plug 'tpope/vim-sensible' " sensible defaults
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim' " colorscheme
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax highlight & indent
 call plug#end()
 
 "" sane defaults
@@ -65,11 +65,17 @@ let g:lightline = {
 " disable blinking cursor
 set gcr=a:blinkon0
 
+
+"" misc
+
 " leader bind
 let mapleader=','
-
 " fzf.vim use ripgrep
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*" --glob "!node_modules/*"'
+" enable treesitter syntax highlight
+lua <<EOF
+require'nvim-treesitter.configs'.setup { highlight = { enable = true }, indentation = { enable = true } }
+EOF
 
 " closetag files
 let g:closetag_filenames = "*.vue,*.html,*.jsx.,*.tsx,*.xml"
