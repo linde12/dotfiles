@@ -86,7 +86,22 @@ function s:setupWrapping() " linewrap for txt & md files
   set textwidth=79
 endfunction
 
+function! IsWSL()
+  if has("unix")
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "microsoft"
+      return 1
+    endif
+  endif
+  return 0
+endfunction
+
 "" autocmd rules
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted " exclude quickfix list from bprev, bnext
+augroup END
+
 augroup vimrc-sync-fromstart
   autocmd!
   autocmd BufEnter * :syntax sync maxlines=400
@@ -118,6 +133,13 @@ augroup END
 
 "" remaps
 
+" :cn, :cp (quickfix next prev)
+noremap <Tab> :cn<CR>
+noremap <S-Tab> :cp<CR>
+" autopairs back insert Alt-A
+let g:AutoPairsShortcutBackInsert = '<M-a>'
+imap <C-a> <M-a>
+
 " true happiness cannot be accomplished without these
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -130,8 +152,29 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-" search project with ripgrep
-nnoremap <silent> <leader>f :Rg<CR>
+" fzf ripgrep
+function! RipgrepFzf(query)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!.git/*" --glob "!node_modules/*" -- %s || true'
+  let initial_command = printf(command_fmt, '.')
+  let spec = {'options': ['--query', a:query]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)
+endfunction
+
+command! -nargs=* -bang FRG call RipgrepFzf(<q-args>)
+nnoremap <silent> <leader>f :call RipgrepFzf(expand('<cword>'))<CR>
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " splits
 noremap <Leader>h :<C-u>split<CR>
@@ -196,6 +239,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" coc diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 " coc docs
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -218,3 +265,21 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " coc command list
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
+" WSL yank support
+if IsWSL()
+  let s:clip = '/mnt/c/Windows/System32/clip.exe'
+  if executable(s:clip)
+      augroup WSLYank
+          autocmd!
+          " yank to windows clipboard only if operator is y
+          autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+      augroup END
+  endif
+endif
+
+" buf tabline colors
+hi default link BufTabLineCurrent PmenuSel
+hi default link BufTabLineModifiedCurrent PmenuSel
+hi default link BufTabLineModifiedActive WarningMsg
+hi default link BufTabLineModifiedHidden WarningMsg
