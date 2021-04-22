@@ -47,11 +47,6 @@ set ignorecase
 set smartcase
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlitem,.git
 
-" status bar
-set laststatus=0
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " colorscheme
 set background=dark
 colorscheme onedark
