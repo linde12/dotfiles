@@ -151,8 +151,8 @@ cnoreabbrev Qall qall
 function! RipgrepFzf(query)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --glob "!.git/*" --glob "!node_modules/*" -- %s || true'
   let initial_command = printf(command_fmt, '.')
-  let spec = {'options': ['--query', a:query]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)
+  let spec = {'options': ['--query', a:query, '--delimiter=:', '--nth=3..', '--no-info']}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec, 'up'), 0)
 endfunction
 
 command! -nargs=* -bang FRG call RipgrepFzf(<q-args>)
