@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # install other required applications
-sudo xbps-install -Sy $(cat xbps-packages | xargs)
+sudo xbps-install -Sy $(cat $HOME/.config/yadm/xbps-packages | xargs)
 
 # by default, enable all user services
-mkdir $HOME/service
+mkdir -p $HOME/service
 ln -s $HOME/.config/sv/* $HOME/service/
 
 # install fisher
