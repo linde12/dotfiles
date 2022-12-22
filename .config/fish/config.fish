@@ -1,5 +1,3 @@
-if test -z "$DISPLAY" && [ (fgconsole) -eq 1 ]; exec startx; end;
-
 # Command line utility aliases
 alias t  "tree --dirsfirst"
 alias ll "exa -lah"
