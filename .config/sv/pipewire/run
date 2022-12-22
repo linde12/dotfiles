@@ -1,2 +1,3 @@
 #!/bin/bash
-exec pipewire
+sleep 2
+exec pipewire > /tmp/pipe.log 2>&1
