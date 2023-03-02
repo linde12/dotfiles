@@ -62,7 +62,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{: %I:%M %p   %Y-%m-%d}"
+    "format": "{: %I:%M %p   %Y-%m-%d}",
+		"timezone": "Europe/Stockholm"
   },
   "cpu": {
     "interval":5,
