@@ -39,3 +39,9 @@ cronie
 jq
 seatd
 gcc
+vulkan-loader
+mesa-vulkan-intel
+intel-video-accel
+linux-firmware-intel
+mesa
+mesa-dri
