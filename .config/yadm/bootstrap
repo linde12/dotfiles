@@ -27,8 +27,16 @@ fish -c "fisher install jethrokuan/z"
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+# pokemon colorscripts
+mkdir -p $HOME/downloads
+cd $HOME/downloads
+git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
+cd pokemon-colorscripts
+sudo ./install.sh
+
+
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # install node
-curl -sfLS https://install-node.vercel.app | sh
+curl -sfLS https://install-node.vercel.app | bash
