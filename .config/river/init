@@ -15,6 +15,7 @@ riverctl focus-follows-cursor normal
 
 riverctl map normal Mod4+Shift Return spawn alacritty
 riverctl map normal Mod4 p spawn 'wofi --show drun'
+riverctl map normal Mod4 Backspace spawn 'swaync-client -t -sw'
 
 riverctl map normal Mod4+Shift p spawn firefox
 
