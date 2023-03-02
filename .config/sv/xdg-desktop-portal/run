@@ -1,7 +1,7 @@
 #!/bin/bash
 sleep 3
 if pgrep -x "pipewire" > /dev/null; then
-	exec /usr/libexec/xdg-desktop-portal -r > /tmp/xdp.log 2>&1
+	exec /usr/libexec/xdg-desktop-portal-wlr & sleep 1 && /usr/libexec/xdg-desktop-portal -r
 else
 	exit 1
 fi

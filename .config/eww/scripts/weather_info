@@ -1,5 +1,7 @@
 #!/bin/bash
 
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 ## Collect data
 cache_dir="$HOME/.cache/eww/weather"
 cache_weather_stat=${cache_dir}/weather-stat
@@ -9,7 +11,7 @@ cache_weather_hex=${cache_dir}/weather-hex
 cache_weather_icon=${cache_dir}/weather-icon
 
 ## Weather data
-KEY=$(cat weather_info_key)
+KEY=$(cat $script_dir/weather_info_key)
 CITY_NAME="Hurva"
 UNIT="metric"	# Available options : 'metric' or 'imperial'
 
