@@ -1,5 +1,7 @@
 * {
-  font-family: Iosevka Nerd Font,FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  /* font-family: Iosevka Nerd Font,FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
+  /* font-family: Iosevka Nerd Font,FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
+  font-family: Iosevka Mayukai;
   font-size: 15px;
 }
 
@@ -95,7 +97,7 @@ window#waybar {
   font-weight:  bolder;
   padding: 5px;
   padding-left: 13px;
-  padding-right: 22px;
+  padding-right: 15px;
   border-radius: 15px;
 }
 
@@ -108,7 +110,8 @@ window#waybar {
   font-weight:  bolder;
   padding: 5px;
   padding-top: 6px;
-  min-width: 40px;
+  padding-left: 13px;
+  padding-right: 9px;
 }
 
 
