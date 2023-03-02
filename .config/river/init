@@ -87,6 +87,8 @@ do
     # Mod4+[1-9] to focus tag [0-8]
     riverctl map normal Mod4 $i set-focused-tags $tags
 
+    riverctl map normal Mod4 Tab set-focused-tags $tags
+
     # Mod4+Shift+[1-9] to tag focused view with tag [0-8]
     riverctl map normal Mod4+Shift $i set-view-tags $tags
 
@@ -96,6 +98,9 @@ do
     # Mod4+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
     riverctl map normal Mod4+Shift+Control $i toggle-view-tags $tags
 done
+
+# Mod4+Tab to tab back and forth between tags
+riverctl map normal Mod4 Tab focus-previous-tags
 
 # Mod4+0 to focus all tags
 # Mod4+Shift+0 to tag focused view with all tags
