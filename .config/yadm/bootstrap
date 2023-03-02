@@ -3,6 +3,16 @@
 # install other required applications
 sudo xbps-install -Sy $(cat $HOME/.config/yadm/xbps-packages | xargs)
 
+# enable system-wide services
+sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/seatd /var/service
+sudo ln -s /etc/sv/pipewire /var/service
+sudo ln -s /etc/sv/tlp /var/service
+sudo ln -s /etc/sv/wpa_supplicant /var/service
+sudo ln -s /etc/sv/dhcpcd /var/service
+sudo ln -s /etc/sv/cronie /var/service
+sudo ln -s /etc/sv/bluetoothd /var/service
+
 # by default, enable all user services
 mkdir -p $HOME/service
 ln -s $HOME/.config/sv/* $HOME/service/
