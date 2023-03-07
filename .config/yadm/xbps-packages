@@ -45,3 +45,5 @@ intel-video-accel
 linux-firmware-intel
 mesa
 mesa-dri
+light
+wlr-randr
