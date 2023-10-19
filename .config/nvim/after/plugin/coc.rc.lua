@@ -91,7 +91,11 @@ keyset("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 keyset("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 
 -- Remap keys for applying codeAction to the current buffer.
-keyset("n", "<leader>ac", "<Plug>(coc-codeaction)", opts)
+keyset("n", "<leader>ar", "<Plug>(coc-codeaction-refactor)", opts)
+
+-- Remap keys for applying codeAction to the current line.
+keyset("n", "<leader>ac", "<Plug>(coc-codeaction-line)", opts)
+keyset("n", "<leader>ak", "<Plug>(coc-codeaction-cursor)", opts)
 
 
 -- Apply AutoFix to problem on the current line.

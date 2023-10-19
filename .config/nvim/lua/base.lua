@@ -47,6 +47,10 @@ vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
+vim.o.expandtab = true
+
+-- line width 100
+vim.o.textwidth = 100
 
 -- cmd/status line
 vim.o.showcmd = true

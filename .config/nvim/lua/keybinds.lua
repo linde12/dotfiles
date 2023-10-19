@@ -42,3 +42,4 @@ keymap.set('n', '<leader>..', ":lcd ..<CR>")
 -- system clipboard yank
 keymap.set('n', '<leader>y', '"+y')
 keymap.set('n', '<leader>p', '"+p')
+

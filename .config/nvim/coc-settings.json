@@ -1,11 +1,14 @@
 {
   "coc.preferences.formatOnSave": true,
   "suggest.virtualText": true,
-  "diagnostic.virtualText": true,
-  "codeLens.enable": true,
+  "diagnostic.virtualText": false,
+  "codeLens.enable": false,
   "typescript.referencesCodeLens.enabled": false,
   "diagnostic.hintSign": "",
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
-  "diagnostic.infoSign": ""
+  "diagnostic.infoSign": "",
+  "python.formatting.provider": "black",
+  "pyright.organizeimports.provider": "isort",
+  "python.sortImports.path": "isort"
 }
