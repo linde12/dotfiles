@@ -1,0 +1,16 @@
+import = ["/home/olinde/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[font]
+size = 14
+
+[font.normal]
+family = "Hack"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[window]
+opacity = 0.9

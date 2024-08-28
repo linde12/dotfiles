@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+files=(~/.local/share/wallpapers/*)
+wallpaper=${files[$RANDOM % ${#files[@]}]}
+swww img $wallpaper --transition-type random --transition-duration 0.5
+
+

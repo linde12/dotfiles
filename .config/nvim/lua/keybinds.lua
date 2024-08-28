@@ -43,3 +43,6 @@ keymap.set('n', '<leader>..', ":lcd ..<CR>")
 keymap.set('n', '<leader>y', '"+y')
 keymap.set('n', '<leader>p', '"+p')
 
+-- markdown preview
+keymap.set('n', '<leader>m', ':MarkdownPreview<CR>', { silent = true })
+

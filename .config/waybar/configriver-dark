@@ -3,20 +3,12 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "tray"],
+    "modules-left": ["river/tags", "tray"],
     "modules-center": ["custom/music"],
     "modules-right": ["pulseaudio", "network", "backlight", "battery", "clock"],
-    "hyprland/workspaces": {
-      "disable-scroll": true,
-      "sort-by-name": true,
-      "format": " {icon} ",
-      "format-icons": {
-        "default": "",
-      },
-      "persistent-workspaces": {
-          "eDP-1": [6,7,8,9],
-          "DP-2": [1,2,3,4,5]
-      }
+    "river/tags": {
+      "num-tags": 9,
+      "tag-labels": [ "", "", "", "", "", "", "", "", "" ]
     },
     "tray": {
         "icon-size": 21,

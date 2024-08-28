@@ -33,8 +33,6 @@ vim.wo.signcolumn = 'yes'
 
 -- colors
 vim.o.termguicolors = true
-vim.o.pumblend = 8 -- popup menu transparency
-vim.cmd('colorscheme tokyonight')
 
 -- -- shell
 -- vim.o.title = true

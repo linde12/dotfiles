@@ -13,32 +13,26 @@
   margin: 5px 5px;
 }
 
-#workspaces {
+#tags {
   border-radius: 1rem;
   margin: 5px;
   background-color: @surface0;
   margin-left: 1rem;
-  padding-right: 4px;
 }
 
-#workspaces button {
-  color: @lavender;
-  border-radius: 1rem;
-  padding: 0.4rem;
-}
-
-#workspaces button.empty {
+#tags button {
   color: @base;
   border-radius: 1rem;
+  padding: 0.8rem;
 }
 
-#workspaces button.active {
-  color: @sky;
+#tags button.occupied {
+  color: @lavender;
   border-radius: 1rem;
 }
 
-#workspaces button:hover {
-  color: @sapphire;
+#tags button.focused {
+  color: @sky;
   border-radius: 1rem;
 }
 

@@ -1,5 +1,7 @@
 import:
-  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+# import:
+#   - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
 font:
   size: 14
   normal:
@@ -10,3 +12,6 @@ font:
 
 key_bindings:
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+
+window:
+  opacity: 0.9

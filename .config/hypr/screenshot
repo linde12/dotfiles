@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+sleep 0.1 # to avoid instantly clicking
+grim -g "$(slurp)" - | wl-copy

@@ -20,23 +20,23 @@
 (defwidget weather [] 
 	(box :class "weather genwin" 
 		(box :orientation "v" :spacing 10 :space-evenly "false" :vexpand "false" :hexpand "false" 
-			(box :orientation "h" :vexpand "false" :hexpand "false" :space-evenly true
+			(box :orientation "h" :vexpand "false" :hexpand "false" 
 				(label :class "iconweather" :halign "start" :style "color: ${HEX};" :text ICON)
-				(label :class "label_temp" :halign "end" :text TEMP :show-truncated false))
+				(label :class "label_temp" :halign "end" :text TEMP))
 			(box :orientation "v" :spacing 10 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
 				(label :class "label_stat" :text STAT)
-				(label :class "label_quote" :text QUOTE :show-truncated false)
-				(label :class "label_quote" :text QUOTE2 :show-truncated false)))))
+				(label :class "label_quote" :text QUOTE)
+				(label :class "label_quote" :text QUOTE2)))))
 
 ;; clock
 (defwidget clock [] 
 	(box :class "genwin" :orientation "h" :spacing 50 :space-evenly false :vexpand "false" :hexpand "false" 
 		(box :orientation "h" :spacing 0
-			(label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR :show-truncated false)
-			(label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN :show-truncated false))
+			(label :class "time_hour" :valign "start" :wrap "true" :limit-width 25 :text HOUR)
+			(label :class "time_min" :valign "end" :wrap "true" :limit-width 25 :text MIN))
 		(box :orientation "v" :spacing 0 
-			(label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text MER :show-truncated false)
-			(label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DAY :show-truncated false))))
+			(label :class "time_mer" :valign "start" :halign "end" :wrap "true" :limit-width 25 :text MER)
+			(label :class "time_day" :valign "end" :halign "end" :wrap "true" :limit-width 25 :text DAY))))
 
 ;; electricity
 (defwidget electricity [] 
@@ -45,8 +45,8 @@
 			(label :halign "start" :text "Today")
 			(label :halign "start" :text "Tomorrow"))
 		(box :class "elec-price" :orientation "v" :valign "center"
-			(label :halign "start" :text ELECTRICITY_TODAY :show-truncated false)
-			(label :halign "start" :text ELECTRICITY_TOMORROW :show-truncated false))))
+			(label :halign "start" :text ELECTRICITY_TODAY)
+			(label :halign "start" :text ELECTRICITY_TOMORROW))))
 
 (defwidget main []
 	(box :orientation "h" :spacing 20 :space-evenly false :vexpand "true" :hexpand "true"
