@@ -1,7 +1,40 @@
 local keymap = vim.keymap
 
--- dont yank into main reg when using x
-keymap.set('n', 'x', '"_x')
+-- use system clipboard for yanks
+vim.o.clipboard = 'unnamedplus'
+
+-- highlight on search
+vim.o.hlsearch = true
+
+-- persist undo history
+vim.o.undofile = true
+
+-- smart incase sensitive search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- low updatetime
+vim.o.updatetime = 250
+
+-- show sign column
+vim.wo.signcolumn = 'yes'
+
+-- default line width 100
+vim.o.textwidth = 100
+
+-- set relative line numbers
+vim.wo.relativenumber = true
+
+-- leader ,
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
+
+-- indentation
+vim.o.smartindent = false -- instead, use treesitter for indent
+vim.o.autoindent = true
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
@@ -46,3 +79,5 @@ keymap.set('n', '<leader>p', '"+p')
 -- markdown preview
 keymap.set('n', '<leader>m', ':MarkdownPreview<CR>', { silent = true })
 
+-- <leader>p paste fro "0 register (non-volatile)
+keymap.set('n', '<leader>p', '"0p')
