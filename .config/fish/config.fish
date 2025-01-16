@@ -1,8 +1,8 @@
 # Command line utility aliases
 alias t  "tree --dirsfirst"
-alias ll "exa -lah"
-alias l "exa"
-alias ls "exa"
+alias ll "eza -lah"
+alias l "eza"
+alias ls "eza"
 alias cat "bat"
 alias g "git"
 alias gs "git status"
@@ -14,22 +14,30 @@ alias gf "git fetch --all"
 alias gl "git l"
 alias pr "gh pr"
 alias wtc 'curl -Ss http://whatthecommit.com/index.txt | xargs -0 git commit -m '
+alias vim nvim
 
 # Link binaries w/ stow to ~/.local/bin
 function lnbin
   stow -t $HOME/.local/bin/ $argv;
 end
 
-# Upload file under 100MiB & copies URL to clipboard, removed in 24h
+# Upload file & copies URL to clipboard
 function up
-  set result (curl -sF name=$argv -F file=@$argv 'https://uguu.se/api.php?d=upload-tool')
+  set file $argv[1]
+  set id $(uuidgen)
+  ssh nasa mkdir -p ./www/papper/$id
+  scp $file nasa:/home/www/papper/$id/$file
+  set result "https://skithuset.sparvnet.website/papper/$id/$file"
   echo "Copied '$result' to clipboard"
-  echo $result | tr -d '\n' | xsel -bspi
+  echo $result | tr -d '\n' | wl-copy
 end
-function dela
-  set result (curl -sF name=$argv -F file=@$argv 'https://fildel-api.herokuapp.com/')
-  echo "Copied '$result' to clipboard"
-  echo $result | tr -d '\n' | xsel -bspi
+
+function pkgsync
+  xbps-query -m | sed -r 's,(.*)-.*,\1,g' > $HOME/pkgs
+end
+
+function pkgupdate
+  cat $HOME/pkgs | grep "^[a-zA-Z0-9]" | xargs sudo xbps-install -Sy | grep -v "already installed"
 end
 
 # Git aliases
@@ -56,9 +64,6 @@ set -x LS_COLORS "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 
 # Greeting
 function fish_greeting
-  if status is-interactive
-    pokemon-colorscripts -r --no-title
-  end
   #echo "$ce$USER$c2@$c4"(uname -n)$c2" - $c0"(uptime)" $c3~~~ ><(((º>"
   #calendar | grep (date "+%b %d")
 end
@@ -66,15 +71,11 @@ function fish_title
   echo "fish @ "(pwd)
 end
 
-
 # Allow fish to print out unicode characters
 set -x LANG en_US.UTF-8
 
 # Editor config
 set -U EDITOR nvim
-
-# Terminal config
-#set -x TERM xterm-256color
 
 # Rust bin
 set -x PATH $PATH $HOME/.cargo/bin
@@ -88,7 +89,5 @@ set -x PATH $PATH $HOME/.npm-global/bin
 # XDG_USER_DIRS
 set -x XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/linde/.local/share/flatpak/exports/share"
 
-# source $HOME/.cargo/env
-alias vim nvim
-
 starship init fish | source
+wal -Renq

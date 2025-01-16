@@ -1,6 +1,7 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 files=(~/.local/share/wallpapers/*)
 wallpaper=${files[$RANDOM % ${#files[@]}]}
-swww img $wallpaper --transition-type random --transition-duration 0.5
+swww img $wallpaper --transition-type=wave --transition-duration 1 --resize crop
+wal -i $wallpaper -n
 
 

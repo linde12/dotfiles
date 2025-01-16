@@ -1,12 +1,11 @@
 {
-    "reload_style_on_change": true,
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
+    // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces"],
-    //"modules-center": ["custom/music"],
-    "modules-center": ["mpris"],
-    "modules-right": ["tray", "pulseaudio", "network", "backlight", "battery", "clock"],
+    "modules-left": ["hyprland/workspaces", "tray"],
+    "modules-center": ["custom/music"],
+    "modules-right": ["pulseaudio", "network", "backlight", "battery", "clock"],
     "hyprland/workspaces": {
       "disable-scroll": true,
       "sort-by-name": true,
@@ -20,15 +19,8 @@
       }
     },
     "tray": {
-        "icon-size": 17,
+        "icon-size": 21,
         "spacing": 10
-    },
-    "mpris": {
-      "format": "{status_icon} {artist} - {title}",
-      "status-icons": {
-        "playing": "⏸",
-        "paused": "▶"
-      }
     },
     "custom/music": {
         "format": "  {}",
@@ -41,7 +33,7 @@
     },
     "clock": {
         "tooltip-format": "{calendar}",
-        "format": " {:%H:%M %p}",
+        "format": " {:%H:%M}",
         "format-alt": " {:%I:%M %p   %Y-%m-%d}",
         "calendar": {
           "mode"          : "month",
