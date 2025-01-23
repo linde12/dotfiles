@@ -33,7 +33,8 @@ function up
 end
 
 function pkgsync
-  xbps-query -m | sed -r 's,(.*)-.*,\1,g' > $HOME/pkgs
+  pacman -Qen | sed -r 's,(.*) .*,\1,g' > $HOME/pkgs
+  pacman -Qem | sed -r 's,(.*) .*,\1,g' > $HOME/pkgs-extra
 end
 
 function pkgupdate
@@ -81,10 +82,9 @@ set -U EDITOR nvim
 set -x PATH $PATH $HOME/.cargo/bin
 
 # Node bin
-# set -x PATH $PATH /home/linde/.local/share/node-v12.18.2-linux-x64/bin
 # $HOME/.local/bin
 set -x PATH $PATH $HOME/.local/bin
-set -x PATH $PATH $HOME/.npm-global/bin
+set -x PATH $PATH $HOME/.local/share/npm/bin
 
 # XDG_USER_DIRS
 set -x XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/linde/.local/share/flatpak/exports/share"
