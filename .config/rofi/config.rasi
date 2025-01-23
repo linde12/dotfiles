@@ -1,4 +1,3 @@
-
 @theme "/home/linde/.local/share/rofi/themes/spotlight.rasi"
 window {
 height: 300px;
