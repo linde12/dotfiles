@@ -12,7 +12,7 @@
     editor = vim
 
 [push]
-    default = matching
+    default = current
 
 [pull]
     ff = only
