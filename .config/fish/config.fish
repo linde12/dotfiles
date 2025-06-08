@@ -15,6 +15,15 @@ alias gl "git l"
 alias pr "gh pr"
 alias wtc 'curl -Ss http://whatthecommit.com/index.txt | xargs -0 git commit -m '
 alias vim nvim
+alias v nvim
+
+function fish_should_add_to_history
+  if string match -qr "nsfw" -- "$argv"
+    return 1
+  end
+
+  return 0
+end
 
 # Link binaries w/ stow to ~/.local/bin
 function lnbin
@@ -65,7 +74,7 @@ set -x LS_COLORS "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 
 # Greeting
 function fish_greeting
-  #echo "$ce$USER$c2@$c4"(uname -n)$c2" - $c0"(uptime)" $c3~~~ ><(((º>"
+  # echo "$ce$USER$c2@$c4"(uname -n)$c2" - $c0"(uptime)" $c3~~~ ><(((º>"
   #calendar | grep (date "+%b %d")
 end
 function fish_title
@@ -89,5 +98,4 @@ set -x PATH $PATH $HOME/.local/share/npm/bin
 # XDG_USER_DIRS
 set -x XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/linde/.local/share/flatpak/exports/share"
 
-starship init fish | source
-wal -Renq
+zoxide init fish | source
