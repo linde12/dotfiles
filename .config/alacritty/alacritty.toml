@@ -13,6 +13,11 @@ action = "SpawnNewInstance"
 key = "Return"
 mods = "Control|Shift"
 
+[[keyboard.bindings]]
+command = { program = "nautilus", args = ["."] }
+key = "F"
+mods = "Control|Shift"
+
 [window]
 opacity = 0.9
 

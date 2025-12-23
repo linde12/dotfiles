@@ -1,6 +1,63 @@
-#!/usr/bin/env bash
-wallpaper=$(find ~/.local/share/wallpapers -type f | shuf -n 1)
-swww img $wallpaper --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop
-wal -i $wallpaper -n
+#!/usr/bin/python
+
+import os
+import random
+import time
+import json
+from pathlib import Path
+
+# Configuration
+IMAGE_DIR = Path.home() / ".local" / "share" / "wallpapers"
+HISTORY_FILE = Path.home() / ".config" / "wallpaper_history.json"
+DECAY_FACTOR = 1.5  # Controls how much favor older images get
 
 
+def load_image_history():
+    if os.path.exists(HISTORY_FILE):
+        with open(HISTORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+
+def save_image_history(history):
+    with open(HISTORY_FILE, "w") as f:
+        json.dump(history, f)
+
+
+def get_image_weights(images, history):
+    current_time = time.time()
+    weights = []
+
+    for img in images:
+        last_used = history.get(img, 0)
+        # Time since last used, with a small offset to avoid div by zero
+        time_diff = max(current_time - last_used, 1)
+        weight = time_diff**DECAY_FACTOR
+        weights.append(weight)
+
+    return weights
+
+
+def choose_image():
+    images = [f for f in os.listdir(IMAGE_DIR)]
+
+    if not images:
+        raise ValueError("No images found in the directory.")
+
+    history = load_image_history()
+    weights = get_image_weights(images, history)
+
+    selected = random.choices(images, weights=weights, k=1)[0]
+    history[selected] = time.time()
+    save_image_history(history)
+
+    return os.path.join(IMAGE_DIR, selected)
+
+
+if __name__ == "__main__":
+    chosen_image = choose_image()
+    # Run the following shell commands to set the wallpaper
+    # swww img $wallpaper --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop
+    os.system(
+        f'swww img "{chosen_image}" --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop'
+    )

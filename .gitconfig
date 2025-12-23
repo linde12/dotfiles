@@ -1,22 +1,23 @@
 [user]
 	email = lindeoscar@gmail.com
 	name = linde12
-
 [alias]
-    ch = checkout
-    s = status
-    b = branch
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
+	ch = checkout
+	s = status
+	b = branch
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	rh = reset --hard
+	rhm = !git fetch --all && git reset --hard origin/master
 [core]
-    editor = vim
-
+	editor = nvim
 [push]
-    default = current
+	default = current
 
 [pull]
-    ff = only
-
+	ff = only
 [init]
 	defaultBranch = master
-
+[http]
+	version = HTTP/1.1
+[color]
+	ui = auto

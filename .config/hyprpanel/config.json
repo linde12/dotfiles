@@ -623,10 +623,28 @@
   "theme.bar.transparent": true,
   "menus.clock.weather.interval": 1000000,
   "bar.systray.customIcons": {
-    "steam": { "icon": "󰓓", "color": "#89b4fa" },
-    "nm-applet": { "icon": "", "color": "#89b4fa" },
-    "obs": { "icon": "", "color": "#89b4fa" },
-    "chrome_status_icon_1": { "icon": "", "color": "#89b4fa" },
-    "blueman": { "icon": "", "color": "#89b4fa" }
-  }
+    "steam": {
+      "icon": "󰓓",
+      "color": "#89b4fa"
+    },
+    "nm-applet": {
+      "icon": "",
+      "color": "#89b4fa"
+    },
+    "obs": {
+      "icon": "",
+      "color": "#89b4fa"
+    },
+    "chrome_status_icon_1": {
+      "icon": "",
+      "color": "#89b4fa"
+    },
+    "blueman": {
+      "icon": "",
+      "color": "#89b4fa"
+    }
+  },
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }

@@ -33,10 +33,10 @@ end
 # Upload file & copies URL to clipboard
 function up
   set file $argv[1]
-  set id $(uuidgen)
-  ssh nasa mkdir -p ./www/papper/$id
-  scp $file nasa:/home/www/papper/$id/$file
-  set result "https://skithuset.sparvnet.website/papper/$id/$file"
+  set id (string sub -l 6 (uuidgen))
+  ssh terminal1 "mkdir -p /srv/sites/papper.sparvnet.dev/$id"
+  scp $file terminal1:/srv/sites/papper.sparvnet.dev/$id/
+  set result https://papper.sparvnet.dev/$id/(basename $file)
   echo "Copied '$result' to clipboard"
   echo $result | tr -d '\n' | wl-copy
 end
@@ -85,7 +85,7 @@ end
 set -x LANG en_US.UTF-8
 
 # Editor config
-set -U EDITOR nvim
+set -x EDITOR nvim
 
 # Rust bin
 set -x PATH $PATH $HOME/.cargo/bin
@@ -98,4 +98,9 @@ set -x PATH $PATH $HOME/.local/share/npm/bin
 # XDG_USER_DIRS
 set -x XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/linde/.local/share/flatpak/exports/share"
 
+# Xtensa (esp32) toolchain
+set -x LIBCLANG_PATH "/home/linde/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-19.1.2_20250225/esp-clang/lib"
+set -x PATH "/home/linde/.rustup/toolchains/esp/xtensa-esp-elf/esp-14.2.0_20240906/xtensa-esp-elf/bin:$PATH"
+
 zoxide init fish | source
+# parrot init fish | source
