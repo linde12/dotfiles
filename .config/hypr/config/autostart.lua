@@ -1,0 +1,15 @@
+local apps = require("./config/applications")
+
+hl.on("hyprland.start", function()
+    hl.exec_cmd("systemctl start --user pipewire-pulse")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("mako")
+    hl.exec_cmd("nm-applet")
+    -- hl.exec_cmd("hyprpanel")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("$HOME/.config/hypr/cycle-wallpaper")
+    hl.exec_cmd("hidemyweeb")
+
+    hl.exec_cmd(apps.browser, { workspace = "2 silent" })
+    hl.exec_cmd(apps.terminal, { workspace = "3 silent" })
+end)

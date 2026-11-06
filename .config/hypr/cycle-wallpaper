@@ -5,6 +5,7 @@ import random
 import time
 import json
 from pathlib import Path
+import subprocess
 
 # Configuration
 IMAGE_DIR = Path.home() / ".local" / "share" / "wallpapers"
@@ -57,7 +58,15 @@ def choose_image():
 if __name__ == "__main__":
     chosen_image = choose_image()
     # Run the following shell commands to set the wallpaper
-    # swww img $wallpaper --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop
     os.system(
-        f'swww img "{chosen_image}" --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop'
+        f'awww img "{chosen_image}" --transition-type=wave --transition-duration 1 --transition-step=10 --transition-fps=144 --resize crop'
     )
+    # get color from output
+    color = subprocess.run([
+        "get_image_color",
+        chosen_image
+    ], check=True, capture_output=True, text=True)
+    print(chosen_image)
+    color = color.stdout.strip()
+    print(f"color is {color}")
+    os.system(f"leds --color {color}")
