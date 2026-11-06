@@ -1,0 +1,155 @@
+@define-color background #1e1e2e;
+@define-color foreground #e6d8ba;
+* {
+  background-color: @background;
+  color: @foreground;
+
+  border: none;
+  padding: 0px;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-weight: normal;
+}
+#waybar > .horizontal {
+    padding-top: 1.5px;
+}
+
+window#waybar  {
+  background-color: transparent;
+  color: @foreground;
+
+}
+
+#waybar > box {
+  border-radius: 5px;
+  border: 3px solid rgba(255, 255, 255, 0.0);
+  margin: 0px 8px 3px 8px;
+  background-color: @background;
+  box-shadow: 1px 1px 3px 1px #101010;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces {
+  padding: 0 5px;
+  margin: 0;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 2px;
+  margin: 0 0 0 8px;
+  opacity: 1;
+  color: @foreground;
+  font-size: 13px;
+}
+
+#workspaces button.active {
+    color: @foreground;
+    opacity: 1.0;
+    padding: 0 2px;
+    font-size: 15px;
+}
+
+#workspaces button.empty {
+  opacity: 0.3;
+  font-size: 13px;
+}
+
+#workspaces button.empty.active {
+ font-size: 15px;
+ color: @foreground;
+ opacity: 1.0;
+}
+
+#tray,
+#bluetooth,
+#pulseaudio,
+#clock,
+#mpris {
+  font-size: 12px;
+  min-width: 12px;
+  margin: 0 5.5px;
+  padding: 0 2px;
+}
+
+#tray {
+    background-color: @transparent;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @transparent;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+tooltip {
+ padding: 4px;
+ background: @background;
+ font-size: 10px;
+ border: 1px solid alpha(@foreground, 0.8);
+ border-radius: 8px;
+}
+tooltip label {
+    color: @foreground;
+    font-weight: normal;
+}
+
+/* Specific animation Module */
+
+#mpris {
+color: @foreground;
+font-size: 10px;
+padding-top: 0px;
+padding-bottom: 1px;
+animation: repeat;
+	animation-name: blink;
+	animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: #4a4a4a;
+    }
+}
+
+#battery.warning {
+  color: #c95d0f;
+  background-color: @background;
+}
+
+@keyframes blink2 {
+  to {
+    background-color: transparent;
+    color: #f53c3c;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: transparent;
+  color: #e6d8ba;
+  animation-name: blink2;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
